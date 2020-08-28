@@ -1,0 +1,52 @@
+create database exer_fixacao;
+
+
+use exer_fixacao;
+
+create table Departamentos(
+codigo_depto int not null,
+nome varchar(30) not null,
+localizacao varchar(30) not null,
+primary key(codigo_depto));
+
+
+
+create table funcionarios(
+cod_func int not null,
+codigo_depto int not null,
+primeiro_Nome varchar(20),
+segundo_Nome varchar(20),
+ultimo_Nome varchar(20),
+data_Nasc date not null,
+cpf varchar(14) not null,
+rg varchar(13) not null,
+endereco varchar(60) not null,
+cep varchar(10) not null,
+cidade varchar(30) default"Itapira",
+fone_Res varchar(14) not null,
+fone_cel varchar(15) not null,
+funcao varchar(30) not null,
+salario decimal(8,2) not null,
+primary key (cod_func),
+foreign key(codigo_depto) references departamentos(codigo_depto));
+
+
+insert into funcionarios(cod_func, primeiro_nome, segundo_nome, data_nasc, salario, cidade, fone_cel) values
+(1,'valdimar','pereira','1991/25/09','R$ 2.000,00','jacutinga','35999456789),
+(2,'Felipe','fernandes','2010/05/10','R$ 3.000,00','Ouro Fino','35988907689),
+(3,'Rita','pereira','2000/06/06','R$ 1.800,00','Itapira','35999345678),
+(4,'Marta','Batista','1998/01/19','R$ 4.000,00','Itapira','1988456789),
+(5,'Odilio','ferreira','1882/01/01','R$ 1.000,00','Itapira','1999007890),
+(6,'josefa','silva','2003/12/25','R$ 6.000,00','Campinas','1978906543);
+
+select funcionarios primeiro_nome,segundo_nome order by segundo_nome;
+select*from funcionarios order by cidade;
+select*from funcionarios where salario > 1000 order by primeiro_nome,segundo_nome;
+SELECT Data_nasc, Primeiro_nome FROM Funcionarios ORDER BY Data_nasc DESC,Primeiro_nome;
+SELECT primeiro_nome,segundo_nome, fone_cel, endereco, Cidade FROM Funcionarios ORDER BY Primeiro-nome,Segund_nome;
+select sum(salario)as total from funcionarios;
+SELECT primeiro_nome, SUM(Salario) AS Total FROM Departamentos 
+select count(*) as total funcionarios from funcionarios
+select avg(salario) as media from funcionarios
+select primeiro_nome from funcionarios where cidade = 'itapira' and  funcao = 'Recepcionista'
+
